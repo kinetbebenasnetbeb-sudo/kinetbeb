@@ -3,381 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት - ኪነ-ጥበብ</title>
-    
-    <!-- ለ Shortcut / App Icon የሚሆን Logo -->
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-
+    <title>ሰነዶች - መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
     <style>
-        :root {
-            --purple: #5A1D6E;
-            --gold: #FFD700;
-            --green: #008751;
-            --bg: #F4F0F8;
-            --card-bg: #FFFFFF;
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            background-color: var(--bg);
-            margin: 0;
-            padding: 0;
-            direction: ltr;
+            background-color: #f4f6f9;
+            color: #333;
         }
 
         header {
-            background-color: var(--purple);
+            background-color: #1b365d;
             color: white;
-            text-align: center;
-            padding: 25px 15px;
-            border-bottom: 5px solid var(--gold);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        header img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            object-fit: cover;
-            margin-bottom: 10px;
-            background-color: #fff;
-        }
-
-        header h1 {
-            margin: 5px 0;
-            font-size: 22px;
-            letter-spacing: 0.5px;
-        }
-
-        header p.sub-title {
-            margin: 2px 0 10px;
-            color: var(--gold);
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .welcome-banner {
-            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(0,135,81,0.2));
-            border: 1px solid var(--gold);
-            color: #ffffff;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 14px;
-            display: inline-block;
-        }
-
-        .container {
-            max-width: 750px;
-            margin: 20px auto;
-            padding: 0 12px;
-        }
-
-        .upload-section {
-            background: var(--card-bg);
-            padding: 18px;
-            border-radius: 12px;
-            border-top: 4px solid var(--green);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
-        }
-
-        .upload-section h2 {
-            margin-top: 0;
-            color: var(--purple);
-            font-size: 17px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 13px;
-            font-weight: bold;
-            color: #444;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-
-        .btn-submit {
-            background: var(--purple);
-            color: white;
-            border: 2px solid var(--gold);
-            padding: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            font-size: 15px;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-            outline: none;
-        }
-
-        .search-box:focus {
-            border-color: var(--purple);
-        }
-
-        .category-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-
-        .tab-btn {
-            background: #E8E0EF;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            color: var(--purple);
-            white-space: nowrap;
-        }
-
-        .tab-btn.active {
-            background: var(--purple);
-            color: white;
-        }
-
-        .doc-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 14px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-left: 5px solid var(--purple);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.3rem;
+        }
+
+        .back-btn {
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #c0392b;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .upload-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .upload-card h2 {
+            margin-bottom: 1rem;
+            color: #1b365d;
+            font-size: 1.2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        input, select {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #219150;
+        }
+
+        .btn-submit:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .docs-list {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .docs-list h2 {
+            color: #1b365d;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .doc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .doc-item:last-child {
+            border-bottom: none;
         }
 
         .doc-info h3 {
-            margin: 0 0 4px;
-            color: var(--purple);
-            font-size: 16px;
+            color: #1b365d;
+            font-size: 1.1rem;
         }
 
         .doc-info p {
-            margin: 0;
-            color: #666;
-            font-size: 12px;
+            color: #777;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
         }
 
-        .badge {
-            background: #F0E6F5;
-            color: var(--purple);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-
-        .actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .btn-open {
-            background: var(--gold);
-            color: var(--purple);
-            text-decoration: none;
-            padding: 7px 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 12px;
-            border: 1px solid var(--purple);
-        }
-
-        .btn-delete {
-            background: #D9534F;
+        .doc-link {
+            background-color: #3498db;
             color: white;
-            border: none;
-            padding: 7px 10px;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
             font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .doc-link:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
-    <h1>የኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</h1>
-    <p class="sub-title">መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</p>
-    
-    <div class="welcome-banner">
-        ✨ እንኳን ወደ ኪነ-ጥበብ ክፍል ሰነዶች ማጋሪያ አፕሊኬሽን በደህና መጣችሁ! ✨
-    </div>
-</header>
-<div style="text-align: center; margin-top: 15px;">
-    <a href="index.html" style="color: #5A1D6E; text-decoration: none; font-weight: bold; background-color: #FFD700; padding: 8px 16px; border-radius: 20px; display: inline-block;">⬅ ወደ መግቢያ ገጽ ተመለስ</a>
-</div>
+    <header>
+        <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት - የሰነዶች ማከማቻ</h1>
+        <a href="index.html" class="back-btn">⬅️ ወደ ዋና ገጽ</a>
+    </header>
 
-<div class="container">
-
-    <div class="upload-section">
-        <h2>አዲስ ሰነድ መጫኛ (Upload)</h2>
-        <form id="uploadForm">
-            <div class="form-group">
-                <label>የሰነዱ ርዕስ</label>
-                <input type="text" id="docTitle" placeholder="ለምሳሌ፦ የትንሣኤ ድራማ" required>
-            </div>
-            <div class="form-group">
-                <label>የሰነዱ ዓይነት (Category)</label>
-                <select id="docCategory" required>
-                    <option value="ግጥም">ግጥም</option>
-                    <option value="ድራማ">ድራማ</option>
-                    <option value="መነባነብ">መነባነብ</option>
-                    <option value="ስነ ፅሁፍ">ስነ ፅሁፍ</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>የጸሐፊው ስም</label>
-                <input type="text" id="authorName" placeholder="ለምሳሌ፦ ዲ/ን ዮሐንስ" required>
-            </div>
-            <div class="form-group">
-                <label>የ Google Drive PDF ሊንክ</label>
-                <input type="url" id="docLink" placeholder="https://drive.google.com/..." required>
-            </div>
-            <button type="submit" class="btn-submit">ሰነዱን መዝግብ</button>
-        </form>
-    </div>
-
-    <input type="text" id="searchInput" class="search-box" onkeyup="filterDocs()" placeholder="የሰነዱን ርዕስ ወይም ጸሐፊ ይፈልጉ...">
-
-    <div class="category-tabs">
-        <button class="tab-btn active" onclick="setCategory('ሁሉም', this)">ሁሉም</button>
-        <button class="tab-btn" onclick="setCategory('ግጥም', this)">ግጥም</button>
-        <button class="tab-btn" onclick="setCategory('ድራማ', this)">ድራማ</button>
-        <button class="tab-btn" onclick="setCategory('መነባነብ', this)">መነባነብ</button>
-        <button class="tab-btn" onclick="setCategory('ስነ ፅሁፍ', this)">ስነ ፅሁፍ</button>
-    </div>
-
-    <div id="documentContainer"></div>
-
-</div>
-
-<script>
-    let documents = JSON.parse(localStorage.getItem('mesereteDocs')) || [];
-    let selectedCategory = 'ሁሉም';
-
-    document.getElementById('uploadForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        let title = document.getElementById('docTitle').value;
-        let category = document.getElementById('docCategory').value;
-        let author = document.getElementById('authorName').value;
-        let link = document.getElementById('docLink').value;
-
-        let newDoc = {
-            id: Date.now(),
-            title: title,
-            category: category,
-            author: author,
-            link: link,
-            timestamp: Date.now()
-        };
-
-        documents.unshift(newDoc);
-        localStorage.setItem('mesereteDocs', JSON.stringify(documents));
-
-        document.getElementById('uploadForm').reset();
-        renderDocs();
-    });
-
-    function deleteDoc(id) {
-        if(confirm("ይህንን ሰነድ መሰረዝ ይፈልጋሉ?")) {
-            documents = documents.filter(doc => doc.id !== id);
-            localStorage.setItem('mesereteDocs', JSON.stringify(documents));
-            renderDocs();
-        }
-    }
-
-    function renderDocs() {
-        let container = document.getElementById('documentContainer');
-        container.innerHTML = '';
-
-        let now = Date.now();
-        let twentyFourHours = 24 * 60 * 60 * 1000;
-
-        let filtered = documents.filter(doc => {
-            return selectedCategory === 'ሁሉም' || doc.category === selectedCategory;
-        });
-
-        if (filtered.length === 0) {
-            container.innerHTML = '<p style="text-align:center; color:#777; padding:15px;">ምንም የተጫነ ሰነድ የለም።</p>';
-            return;
-        }
-
-        filtered.forEach(doc => {
-            let isDeletable = (now - doc.timestamp) < twentyFourHours;
-            let deleteBtnHtml = isDeletable ? `<button class="btn-delete" onclick="deleteDoc(${doc.id})">Delete</button>` : '';
-
-            let card = `
-                <div class="doc-card">
-                    <div class="doc-info">
-                        <h3>${doc.title} <span class="badge">${doc.category}</span></h3>
-                        <p>ጸሐፊ፦ ${doc.author}</p>
+    <div class="container">
+        <!-- አዲስ ሰነድ መጫኛ -->
+        <div class="upload-card">
+            <h2>አዲስ የሰነድ/መጽሐፍ PDF ይጫኑ</h2>
+            <form id="uploadForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>የሰነዱ/መጽሐፉ ርዕስ</label>
+                        <input type="text" id="docTitle" required placeholder="ለምሳሌ፡ የፋሲካ ግጥም">
                     </div>
-                    <div class="actions">
-                        <a href="${doc.link}" target="_blank" class="btn-open">PDF ክፈት</a>
-                        ${deleteBtnHtml}
+                    <div class="form-group">
+                        <label>ምድብ (Category)</label>
+                        <select id="docCategory">
+                            <option value="ግጥም">ግጥም</option>
+                            <option value="ድራማ">ድራማ</option>
+                            <option value="መነባንብ">መነባንብ</option>
+                            <option value="ስነ ፅሁፍ">ስነ ፅሁፍ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>የአዘጋጁ/ጸሐፊው ስም</label>
+                        <input type="text" id="authorName" placeholder="ለምሳሌ፡ ዲ/ን ዮሴፍ">
+                    </div>
+                    <div class="form-group">
+                        <label>PDF ፋይል ይምረጡ</label>
+                        <input type="file" id="pdfFileInput" accept="application/pdf" required>
                     </div>
                 </div>
-            `;
-            container.innerHTML += card;
-        });
-    }
+                <button type="submit" class="btn-submit" id="submitBtn">ሰነዱን ስቀል (Upload)</button>
+            </form>
+        </div>
 
-    function setCategory(cat, btn) {
-        selectedCategory = cat;
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderDocs();
-    }
+        <!-- የሰነዶች ዝርዝር -->
+        <div class="docs-list">
+            <h2>የተጫኑ የሰንበት ትምህርት ቤቱ ሰነዶች</h2>
+            <div id="docsContainer">
+                <!-- ፋይሎች እዚህ ጋር በዝርዝር ይታያሉ -->
+            </div>
+        </div>
+    </div>
 
-    function filterDocs() {
-        let query = document.getElementById('searchInput').value.toLowerCase();
-        let cards = document.getElementsByClassName('doc-card');
+    <script>
+        // የ Cloudinary መረጃዎች
+        const CLOUD_NAME = "r1czakru"; 
+        const UPLOAD_PRESET = "kinetebeb_preset"; // ⚠️ Cloudinary ላይ Save ያደረጉትን Preset Name እዚህ ያረጋግጡ
 
-        for (let i = 0; i < cards.length; i++) {
-            let text = cards[i].innerText.toLowerCase();
-            cards[i].style.display = text.includes(query) ? "flex" : "none";
+        let documents = JSON.parse(localStorage.getItem('mesereteDocs')) || [];
+
+        function renderDocs() {
+            const container = document.getElementById('docsContainer');
+            container.innerHTML = '';
+
+            if (documents.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#888;">እስካሁን የተጫነ ሰነድ የለም።</p>';
+                return;
+            }
+
+            documents.forEach(doc => {
+                const item = document.createElement('div');
+                item.className = 'doc-item';
+                item.innerHTML = `
+                    <div class="doc-info">
+                        <h3>${doc.title}</h3>
+                        <p>ምድብ፦ ${doc.category} | አዘጋጅ፦ ${doc.author || 'አልተጠቀሰም'}</p>
+                    </div>
+                    <a href="${doc.link}" target="_blank" class="doc-link">ተመልከት / አውርድ 📥</a>
+                `;
+                container.appendChild(item);
+            });
         }
-    }
 
-    renderDocs();
-</script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
 
+            let title = document.getElementById('docTitle').value;
+            let category = document.getElementById('docCategory').value;
+            let author = document.getElementById('authorName').value;
+            let fileInput = document.getElementById('pdfFileInput');
+            let file = fileInput.files[0];
+
+            if (!file) {
+                alert("እባክዎን የ PDF ፋይል ይምረጡ!");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            let submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "ፋይሉ እየተጫነ ነው... እባክዎን ይጠብቁ ⏳";
+            submitBtn.disabled = true;
+
+            try {
+                let response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                let data = await response.json();
+
+                if (data.secure_url) {
+                    let newDoc = {
+                        id: Date.now(),
+                        title: title,
+                        category: category,
+                        author: author,
+                        link: data.secure_url,
+                        timestamp: Date.now()
+                    };
+
+                    documents.unshift(newDoc);
+                    localStorage.setItem('mesereteDocs', JSON.stringify(documents));
+
+                    document.getElementById('uploadForm').reset();
+                    renderDocs();
+                    alert("ሰነዱ በስኬት ተጫኗል! 🎉");
+                } else {
+                    alert("ፋይሉን መጫን አልተቻለም፤ እባክዎን የ Preset ስሙን ያረጋግጡ።");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("የስህተት መልእክት፡ ፋይሉ አልተጫነም።");
+            } finally {
+                submitBtn.innerText = "ሰነዱን ስቀል (Upload)";
+                submitBtn.disabled = false;
+            }
+        });
+
+        // ገጹ ሲከፈት ሰነዶቹን ያሳያል
+        renderDocs();
+    </script>
 </body>
 </html>
