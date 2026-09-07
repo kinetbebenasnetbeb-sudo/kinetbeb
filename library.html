@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ቤተ-መጻሕፍት - መሰረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="../logo.png">
+    <link rel="shortcut icon" href="../logo.png" type="image/png">
+
+    <style>
+        :root {
+            --purple: #5A1D6E;
+            --gold: #FFD700;
+            --bg: #F4F0F8;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+            direction: ltr;
+        }
+
+        header {
+            background-color: var(--purple);
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+            border-bottom: 5px solid var(--gold);
+        }
+
+        header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+        }
+
+        header h1 { margin: 5px 0; font-size: 20px; }
+        header p.sub-title { margin: 2px 0; color: var(--gold); font-size: 13px; font-weight: bold; }
+
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .btn-nav {
+            color: var(--purple);
+            text-decoration: none;
+            font-weight: bold;
+            background-color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 15px auto;
+            padding: 0 12px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--purple);
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .category-tabs { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+        .tab-btn { background: #E8E0EF; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: bold; color: var(--purple); white-space: nowrap; }
+        .tab-btn.active { background: var(--purple); color: white; }
+
+        .doc-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid var(--purple);
+        }
+
+        .doc-info h3 { margin: 0 0 4px; color: var(--purple); font-size: 16px; }
+        .doc-info p { margin: 0; color: #666; font-size: 12px; }
+        .badge { background: #F0E6F5; color: var(--purple); padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; margin-left: 5px; }
+        .actions { display: flex; gap: 8px; align-items: center; }
+        .btn-open { background: var(--gold); color: var(--purple); text-decoration: none; padding: 7px 12px; border-radius: 5px; font-weight: bold; font-size: 12px; border: 1px solid var(--purple); }
+        .btn-delete { background: #D9534F; color: white; border: none; padding: 7px 10px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="../logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
+    <h1>የኪነ-ጥበብ ሰነዶች እና ቤተ-መጻሕፍት</h1>
+    <p class="sub-title">መሰረተ ሃይማኖት ሰንበት ትምህርት ቤት</p>
+</header>
+
+<div class="nav-bar">
+    <a href="../index.html" class="btn-nav">⬅ ወደ መግቢያ ገጽ</a>
+    <a href="upload.html" class="btn-nav">➕ አዲስ ሰነድ ስቀል</a>
+</div>
+
+<div class="container">
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" class="search-box" onkeyup="filterDocs()" placeholder="🔍 የሰነዱን ርዕስ ወይም ጸሐፊ ይፈልጉ...">
+
+    <!-- Categories -->
+    <div class="category-tabs">
+        <button class="tab-btn active" onclick="setCategory('ሁሉም', this)">ሁሉም</button>
+        <button class="tab-btn" onclick="setCategory('ግጥም', this)">ግጥም</button>
+        <button class="tab-btn" onclick="setCategory('ድራማ', this)">ድራማ</button>
+        <button class="tab-btn" onclick="setCategory('መነባነብ', this)">መነባነብ</button>
+        <button class="tab-btn" onclick="setCategory('ስነ ፅሁፍ', this)">ስነ ፅሁፍ</button>
+    </div>
+
+    <!-- Documents List -->
+    <div id="documentContainer"></div>
+</div>
+
+<script>
+    let documents = JSON.parse(localStorage.getItem('mesereteDocs')) || [];
+    let selectedCategory = 'ሁሉም';
+
+    function deleteDoc(id) {
+        if(confirm("ይህንን ሰነድ መሰረዝ ይፈልጋሉ?")) {
+            documents = documents.filter(doc => doc.id !== id);
+            localStorage.setItem('mesereteDocs', JSON.stringify(documents));
+            renderDocs();
+        }
+    }
+
+    function renderDocs() {
+        let container = document.getElementById('documentContainer');
+        container.innerHTML = '';
+
+        let now = Date.now();
+        let twentyFourHours = 24 * 60 * 60 * 1000;
+
+        let filtered = documents.filter(doc => {
+            return selectedCategory === 'ሁሉም' || doc.category === selectedCategory;
+        });
+
+        if (filtered.length === 0) {
+            container.innerHTML = '<p style="text-align:center; color:#777; padding:20px;">ምንም የተጫነ ሰነድ አልተገኘም።</p>';
+            return;
+        }
+
+        filtered.forEach(doc => {
+            let isDeletable = (now - doc.timestamp) < twentyFourHours;
+            let deleteBtnHtml = isDeletable ? `<button class="btn-delete" onclick="deleteDoc(${doc.id})">Delete</button>` : '';
+
+            let card = `
+                <div class="doc-card">
+                    <div class="doc-info">
+                        <h3>${doc.title} <span class="badge">${doc.category}</span></h3>
+                        <p>ጸሐፊ፦ ${doc.author}</p>
+                    </div>
+                    <div class="actions">
+                        <a href="${doc.link}" target="_blank" class="btn-open">PDF ክፈት</a>
+                        ${deleteBtnHtml}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+
+        filterDocs();
+    }
+
+    function setCategory(cat, btn) {
+        selectedCategory = cat;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderDocs();
+    }
+
+    function filterDocs() {
+        let query = document.getElementById('searchInput').value.toLowerCase();
+        let cards = document.getElementsByClassName('doc-card');
+
+        for (let i = 0; i < cards.length; i++) {
+            let text = cards[i].innerText.toLowerCase();
+            cards[i].style.display = text.includes(query) ? "flex" : "none";
+        }
+    }
+
+    renderDocs();
+</script>
+
+</body>
+</html>
