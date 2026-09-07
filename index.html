@@ -48,8 +48,32 @@
 
         .container {
             max-width: 500px;
-            margin: 40px auto;
+            margin: 25px auto;
             padding: 0 20px;
+        }
+
+        /* 👉 የእንኳን ደህና መጣችሁ ካርድ ስታይል 👈 */
+        .welcome-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--gold);
+        }
+
+        .welcome-card h2 {
+            color: var(--purple);
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .welcome-card p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
         }
 
         .btn-card {
@@ -82,12 +106,20 @@
 
 <header>
     <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
-    <h1>የኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</h1>
-    <p>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</p>
+    <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት </h1>
+    <p>ኪነ-ጥበብ እና ስነጥበብ ክፍል</p>
 </header>
 
 <div class="container">
-    <a href="library.html" class="btn-card">📚 ቤተ-መጻሕፍት እና መፈለጊያ (Library)</a>
+    
+    <!-- 👉 የእንኳን ደህና መጣችሁ መልእክት 👈 -->
+    <div class="welcome-card">
+        <h2>እንኳን ደህና መጡ! 🕊️</h2>
+        <p>በዚህ ገጽ ሰነዶች፣ ግጥሞች፣ ድራማዎች እና መነባነቦች በቀላሉ ማግኘት ወይም አዲስ ሰነድ መጫን ይችላሉ።</p>
+    </div>
+
+    <!-- የገጽ ማያያዣ ቁልፎች -->
+    <a href="library.html" class="btn-card">🔎 መፈለጊያ (Library)</a>
     <a href="upload.html" class="btn-card btn-upload">➕ አዲስ ሰነድ መጫኛ (Upload)</a>
 </div>
 
