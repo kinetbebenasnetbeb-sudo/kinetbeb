@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>- መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
-    <link rel="icon" type="image/png" href="../logo.png">
+    <title>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="../logo.png">
-    <link rel="shortcut icon" href="../logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
 
     <style>
         :root {
@@ -107,21 +107,19 @@
 <body>
 
 <header>
-    <img src="../logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
-    <h1>የኪነ-ጥበብ ሰነዶች</h1>
+    <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
+    <h1>የኪነ-ጥበብ ሰነዶች </h1>
     <p class="sub-title">መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</p>
 </header>
 
 <div class="nav-bar">
-    <a href="../index.html" class="btn-nav">⬅ ወደ መግቢያ ገጽ</a>
+    <a href="index.html" class="btn-nav">⬅ ወደ መግቢያ ገጽ</a>
     <a href="upload.html" class="btn-nav">➕ አዲስ ሰነድ ስቀል</a>
 </div>
 
 <div class="container">
-    <!-- Search Bar -->
     <input type="text" id="searchInput" class="search-box" onkeyup="filterDocs()" placeholder="🔍 የሰነዱን ርዕስ ወይም ጸሐፊ ይፈልጉ...">
 
-    <!-- Categories -->
     <div class="category-tabs">
         <button class="tab-btn active" onclick="setCategory('ሁሉም', this)">ሁሉም</button>
         <button class="tab-btn" onclick="setCategory('ግጥም', this)">ግጥም</button>
@@ -130,7 +128,6 @@
         <button class="tab-btn" onclick="setCategory('ስነ ፅሁፍ', this)">ስነ ፅሁፍ</button>
     </div>
 
-    <!-- Documents List -->
     <div id="documentContainer"></div>
 </div>
 
