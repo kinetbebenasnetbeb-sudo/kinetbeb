@@ -3,81 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>እንኳን ደህና መጣችሁ - ኪነ-ጥበብ</title>
+    <title>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት - ኪነ-ጥበብ</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="shortcut icon" href="logo.png" type="image/png">
+
     <style>
+        :root {
+            --purple: #5A1D6E;
+            --gold: #FFD700;
+            --bg: #F4F0F8;
+            --card-bg: #FFFFFF;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            background-color: #5A1D6E;
-            color: white;
+            background-color: var(--bg);
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             text-align: center;
         }
-        .welcome-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 40px 20px;
-            border-radius: 20px;
-            border: 2px solid #FFD700;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            max-width: 400px;
-            width: 90%;
-            backdrop-filter: blur(5px);
+
+        header {
+            background-color: var(--purple);
+            color: white;
+            padding: 30px 15px;
+            border-bottom: 5px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .welcome-card img {
-            width: 120px;
-            height: 120px;
+
+        header img {
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 4px solid #FFD700;
+            border: 3px solid var(--gold);
             object-fit: cover;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             background-color: #fff;
         }
-        h1 {
-            color: #FFD700;
-            font-size: 22px;
-            margin-bottom: 10px;
+
+        header h1 { margin: 5px 0; font-size: 22px; }
+        header p { color: var(--gold); font-size: 14px; font-weight: bold; margin: 5px 0; }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
-        h2 {
-            font-size: 16px;
-            margin-top: 0;
-            font-weight: normal;
-        }
-        p {
-            font-size: 15px;
-            line-height: 1.6;
-            margin: 20px 0 30px;
-            color: #f0f0f0;
-        }
-        .btn-enter {
-            display: inline-block;
-            background-color: #FFD700;
-            color: #5A1D6E;
-            padding: 14px 30px;
+
+        .btn-card {
+            background: var(--card-bg);
+            display: block;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-radius: 12px;
             text-decoration: none;
+            color: var(--purple);
             font-weight: bold;
             font-size: 16px;
-            border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-left: 6px solid var(--purple);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .btn-card:hover {
+            background: var(--purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-upload {
+            border-left-color: #008751;
         }
     </style>
 </head>
 <body>
 
-    <div class="welcome-card">
-        <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
-        <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</h1>
-        <h2>የኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</h2>
-        
-        <p>✨ እንኳን ወደ ሰነዶች ማጋሪያ አፕሊኬሽን በደህና መጣችሁ! ✨</p>
-        
-        <a href="documents.html" class="btn-enter">ወደ ሰነዶች ይለፉ ➔</a>
-    </div>
+<header>
+    <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
+    <h1>የኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</h1>
+    <p>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</p>
+</header>
+
+<div class="container">
+    <a href="library.html" class="btn-card">📚 ቤተ-መጻሕፍት እና መፈለጊያ (Library)</a>
+    <a href="upload.html" class="btn-card btn-upload">➕ አዲስ ሰነድ መጫኛ (Upload)</a>
+</div>
 
 </body>
 </html>
