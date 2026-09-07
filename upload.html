@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ሰነድ መጫኛ - መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
+    <title>ሰነድ መጫኛ - መሰረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="logo.png">
@@ -43,7 +43,7 @@
 
 <div class="nav-bar">
     <a href="index.html" class="btn-nav">⬅ ወደ መግቢያ ገጽ</a>
-    <a href="library.html" class="btn-nav">📚 ኪነጥበብ እና ስነጥበብ (የተጫኑ ፋይሎች)</a>
+    <a href="library.html" class="btn-nav">📚 ቤተ-መጻሕፍት (የተጫኑ ፋይሎች)</a>
 </div>
 
 <div class="container">
@@ -98,7 +98,7 @@
         formData.append('upload_preset', UPLOAD_PRESET);
 
         try {
-            let response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+            let response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`, {
                 method: 'POST',
                 body: formData
             });
@@ -117,7 +117,7 @@
                 documents.unshift(newDoc);
                 localStorage.setItem('mesereteDocs', JSON.stringify(documents));
 
-                alert("ሰነዱ በስኬት ተጫኗል! 🎉 ");
+                alert("ሰነዱ በስኬት ተጫኗል! 🎉 ወደ ቤተ-መጻሕፍት ይዛወራሉ።");
                 window.location.href = "library.html";
             } else {
                 alert("ፋይሉን መጫን አልተቻለም።");
