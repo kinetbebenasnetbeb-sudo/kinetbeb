@@ -1,0 +1,22 @@
+{
+  "short_name": "ኪነ-ጥበብ",
+  "name": "መሰረተ ሃይማኖት ሰንበት ትምህርት ቤት - ኪነ-ጥበብ",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#5A1D6E",
+  "theme_color": "#5A1D6E",
+  "display": "standalone"
+}
