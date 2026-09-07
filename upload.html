@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ሰነድ መጫኛ - መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="../logo.png">
+    <link rel="shortcut icon" href="../logo.png" type="image/png">
+
+    <style>
+        :root {
+            --purple: #5A1D6E;
+            --gold: #FFD700;
+            --green: #008751;
+            --bg: #F4F0F8;
+            --card-bg: #FFFFFF;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: var(--bg); margin: 0; padding: 0; }
+        header { background-color: var(--purple); color: white; text-align: center; padding: 20px 15px; border-bottom: 5px solid var(--gold); }
+        header img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; }
+        header h1 { margin: 5px 0; font-size: 20px; }
+        
+        .nav-bar { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
+        .btn-nav { color: var(--purple); text-decoration: none; font-weight: bold; background-color: var(--gold); padding: 8px 16px; border-radius: 20px; font-size: 13px; }
+
+        .container { max-width: 600px; margin: 15px auto; padding: 0 12px; }
+        .upload-section { background: var(--card-bg); padding: 20px; border-radius: 12px; border-top: 4px solid var(--green); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; margin-bottom: 4px; font-size: 13px; font-weight: bold; color: #444; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+        .btn-submit { background: var(--purple); color: white; border: 2px solid var(--gold); padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; font-size: 15px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="../logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
+    <h1>አዲስ የኪነ-ጥበብ ሰነድ መጫኛ</h1>
+</header>
+
+<div class="nav-bar">
+    <a href="../index.html" class="btn-nav">⬅ ወደ መግቢያ ገጽ</a>
+    <a href="library.html" class="btn-nav">(የተጫኑ ፋይሎች)</a>
+</div>
+
+<div class="container">
+    <div class="upload-section">
+        <form id="uploadForm">
+            <div class="form-group">
+                <label>የሰነዱ ርዕስ</label>
+                <input type="text" id="docTitle" placeholder="ለምሳሌ፦ የትንሣኤ ድራማ" required>
+            </div>
+            <div class="form-group">
+                <label>የሰነዱ ዓይነት (Category)</label>
+                <select id="docCategory" required>
+                    <option value="ግጥም">ግጥም</option>
+                    <option value="ድራማ">ድራማ</option>
+                    <option value="መነባነብ">መነባነብ</option>
+                    <option value="ስነ ፅሁፍ">ስነ ፅሁፍ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>የጸሐፊው ስም</label>
+                <input type="text" id="authorName" placeholder="ለምሳሌ፦ ዲ/ን ዮሐንስ" required>
+            </div>
+            <div class="form-group">
+                <label>PDF ፋይል ይምረጡ</label>
+                <input type="file" id="pdfFileInput" accept="application/pdf" required>
+            </div>
+            <button type="submit" class="btn-submit" id="submitBtn">ሰነዱን ስቀል (Upload)</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const CLOUD_NAME = "r1czakru"; 
+    const UPLOAD_PRESET = "kinetebeb_preset";
+
+    let documents = JSON.parse(localStorage.getItem('mesereteDocs')) || [];
+
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        let title = document.getElementById('docTitle').value;
+        let category = document.getElementById('docCategory').value;
+        let author = document.getElementById('authorName').value;
+        let file = document.getElementById('pdfFileInput').files[0];
+
+        let submitBtn = document.getElementById('submitBtn');
+        submitBtn.innerText = "ፋይሉ እየተጫነ ነው... ⏳";
+        submitBtn.disabled = true;
+
+        let formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', UPLOAD_PRESET);
+
+        try {
+            let response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+                method: 'POST',
+                body: formData
+            });
+            let data = await response.json();
+
+            if (data.secure_url) {
+                let newDoc = {
+                    id: Date.now(),
+                    title: title,
+                    category: category,
+                    author: author,
+                    link: data.secure_url,
+                    timestamp: Date.now()
+                };
+
+                documents.unshift(newDoc);
+                localStorage.setItem('mesereteDocs', JSON.stringify(documents));
+
+                alert("ሰነዱ በስኬት ተጫኗል! 🎉 ወደ ቤተ-መጻሕፍት ይዛወራሉ።");
+                window.location.href = "library.html"; // ቀጥታ ወደ 3ኛው ገጽ ይወስደዋል
+            } else {
+                alert("ፋይሉን መጫን አልተቻለም።");
+            }
+        } catch (error) {
+            alert("ስህተት ተከሰቷል፤ ፋይሉ አልተጫነም።");
+        } finally {
+            submitBtn.innerText = "ሰነዱን ስቀል (Upload)";
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
