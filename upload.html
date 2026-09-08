@@ -3,58 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ሰነድ መጫኛ - መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>ሰነድ መጫኛ - ኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</title>
+    <link rel="icon" type="image/png" href="logo.png?v=2">
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="shortcut icon" href="logo.png" type="image/png">
 
     <style>
         :root {
             --purple: #5A1D6E;
             --gold: #FFD700;
-            --green: #008751;
             --bg: #F4F0F8;
             --card-bg: #FFFFFF;
+            --text-color: #333333;
+            --border-color: #CCCCCC;
         }
 
-        body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: var(--bg); margin: 0; padding: 0; }
-        header { background-color: var(--purple); color: white; text-align: center; padding: 20px 15px; border-bottom: 5px solid var(--gold); }
-        header img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; }
-        header h1 { margin: 5px 0; font-size: 20px; }
-        
-        .nav-bar { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
-        .btn-nav { color: var(--purple); text-decoration: none; font-weight: bold; background-color: var(--gold); padding: 8px 16px; border-radius: 20px; font-size: 13px; }
+        body.dark-mode {
+            --bg: #121212;
+            --card-bg: #1E1E1E;
+            --text-color: #E0E0E0;
+            --border-color: #444444;
+        }
 
-        .container { max-width: 600px; margin: 15px auto; padding: 0 12px; }
-        .upload-section { background: var(--card-bg); padding: 20px; border-radius: 12px; border-top: 4px solid var(--green); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; margin-bottom: 4px; font-size: 13px; font-weight: bold; color: #444; }
-        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        .btn-submit { background: var(--purple); color: white; border: 2px solid var(--gold); padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; font-size: 15px; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: var(--purple);
+            color: white;
+            text-align: center;
+            padding: 20px 15px;
+            border-bottom: 5px solid var(--gold);
+            position: relative;
+        }
+
+        header img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+        }
+
+        header h1 { margin: 5px 0; font-size: 18px; }
+        header p { color: var(--gold); font-size: 12px; margin: 2px 0; font-weight: bold; }
+
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .btn-nav {
+            color: var(--purple);
+            text-decoration: none;
+            font-weight: bold;
+            background-color: var(--gold);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 15px auto;
+            padding: 0 15px;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--purple);
+        }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--purple);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        #statusMsg {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 12px;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
-    <h1>አዲስ የኪነ-ጥበብ ሰነድ መጫኛ</h1>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
+    <img src="logo.png?v=2" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
+    <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</h1>
+    <p>የኪነ-ጥበብ እና ስነ-ጥበብ ክፍል አዲስ ሰነድ መጫኛ</p>
 </header>
 
 <div class="nav-bar">
-    <a href="index.html" class="btn-nav">⬅ ወደ መግቢያ ገጽ</a>
-    <a href="library.html" class="btn-nav">ወደ የተጫኑ ፋይሎች</a>
+    <a href="index.html" class="btn-nav">⬅ መግቢያ ገጽ</a>
+    <a href="library.html" class="btn-nav">የተጫኑ ሰነዶች</a>
 </div>
 
 <div class="container">
-    <div class="upload-section">
+    <div class="form-card">
         <form id="uploadForm">
             <div class="form-group">
-                <label>የሰነዱ ርዕስ</label>
+                <label for="docTitle">የሰነዱ ርዕስ</label>
                 <input type="text" id="docTitle" placeholder="ለምሳሌ፦ የትንሣኤ ድራማ" required>
             </div>
+
             <div class="form-group">
-                <label>የሰነዱ ዓይነት (Category)</label>
+                <label for="docCategory">የሰነዱ ዓይነት (Category)</label>
                 <select id="docCategory" required>
                     <option value="ግጥም">ግጥም</option>
                     <option value="ድራማ">ድራማ</option>
@@ -62,49 +162,75 @@
                     <option value="ስነ ፅሁፍ">ስነ ፅሁፍ</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label>የጸሐፊው ስም</label>
-                <input type="text" id="authorName" placeholder="ለምሳሌ፦ ዲ/ን ዮሐንስ" required>
+                <label for="docAuthor">የጸሐፊው ስም</label>
+                <input type="text" id="docAuthor" placeholder="ለምሳሌ፦ ዲ/ን ዮሐንስ" required>
             </div>
+
             <div class="form-group">
-                <label>PDF ፋይል ይምረጡ</label>
+                <label for="pdfFileInput">PDF ወይም Word ፋይል ይምረጡ</label>
                 <input type="file" id="pdfFileInput" accept="application/pdf, .pdf, .doc, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
             </div>
+
             <button type="submit" class="btn-submit" id="submitBtn">ሰነዱን ስቀል (Upload)</button>
         </form>
+        <div id="statusMsg"></div>
     </div>
 </div>
 
 <script>
-    const CLOUD_NAME = "r1czakru"; 
-    const UPLOAD_PRESET = "kinetebeb_preset";
+    const themeBtn = document.getElementById('themeBtn');
 
-    let documents = JSON.parse(localStorage.getItem('mesereteDocs')) || [];
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeBtn) themeBtn.innerText = '☀️ Light';
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        let isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        if (themeBtn) themeBtn.innerText = isDark ? '☀️ Light' : '🌙 Dark';
+    }
+
+    const cloudName = "r1czakru";
+    const uploadPreset = "ml_default";
 
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-
+        
         let title = document.getElementById('docTitle').value;
         let category = document.getElementById('docCategory').value;
-        let author = document.getElementById('authorName').value;
-        let file = document.getElementById('pdfFileInput').files[0];
-
+        let author = document.getElementById('docAuthor').value;
+        let fileInput = document.getElementById('pdfFileInput');
+        let statusMsg = document.getElementById('statusMsg');
         let submitBtn = document.getElementById('submitBtn');
-        submitBtn.innerText = "ፋይሉ እየተጫነ ነው... ⏳";
+
+        if (fileInput.files.length === 0) {
+            alert("እባክዎን ፋይል ይምረጡ!");
+            return;
+        }
+
+        let file = fileInput.files[0];
+        let formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", uploadPreset);
+
+        statusMsg.style.color = "orange";
+        statusMsg.innerText = "ሰነዱ እየተጫነ ነው... እባክዎን ትንሽ ይጠብቁ...";
         submitBtn.disabled = true;
 
-        let formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', UPLOAD_PRESET);
-
         try {
-            let response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`, {
-                method: 'POST',
+            let response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/raw/upload`, {
+                method: "POST",
                 body: formData
             });
+
             let data = await response.json();
 
             if (data.secure_url) {
+                let existingDocs = JSON.parse(localStorage.getItem('mesereteDocs')) || [];
                 let newDoc = {
                     id: Date.now(),
                     title: title,
@@ -114,18 +240,25 @@
                     timestamp: Date.now()
                 };
 
-                documents.unshift(newDoc);
-                localStorage.setItem('mesereteDocs', JSON.stringify(documents));
+                existingDocs.unshift(newDoc);
+                localStorage.setItem('mesereteDocs', JSON.stringify(existingDocs));
 
-                alert("ሰነዱ በስኬት ተጫኗል! 🎉");
-                window.location.href = "library.html";
+                statusMsg.style.color = "green";
+                statusMsg.innerText = "✅ ሰነዱ በስኬት ተጭኗል!";
+                document.getElementById('uploadForm').reset();
+                
+                setTimeout(() => {
+                    window.location.href = "library.html";
+                }, 1500);
+
             } else {
-                alert("ፋይሉን መጫን አልተቻለም።");
+                throw new Error("የፋይል መጫን ስህተት አጋጥሟል");
             }
         } catch (error) {
-            alert("ስህተት ተከሰቷል፤ ፋይሉ አልተጫነም።");
+            statusMsg.style.color = "red";
+            statusMsg.innerText = "❌ ሰነዱን መጫን አልተቻለም። እባክዎን የኢንተርኔት ግንኙነትዎን ያረጋግጡ።";
+            console.error(error);
         } finally {
-            submitBtn.innerText = "ሰነዱን ስቀል (Upload)";
             submitBtn.disabled = false;
         }
     });
