@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት - ኪነ-ጥበብ</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>መግቢያ - ኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</title>
+    <link rel="icon" type="image/png" href="logo.png?v=2">
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="shortcut icon" href="logo.png" type="image/png">
 
     <style>
         :root {
@@ -15,113 +13,135 @@
             --gold: #FFD700;
             --bg: #F4F0F8;
             --card-bg: #FFFFFF;
+            --text-color: #333333;
+            --border-color: #E0E0E0;
+        }
+
+        body.dark-mode {
+            --bg: #121212;
+            --card-bg: #1E1E1E;
+            --text-color: #E0E0E0;
+            --border-color: #333333;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
             background-color: var(--bg);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
-            text-align: center;
+            transition: background 0.3s, color 0.3s;
         }
 
         header {
             background-color: var(--purple);
             color: white;
-            padding: 30px 15px;
+            text-align: center;
+            padding: 25px 15px;
             border-bottom: 5px solid var(--gold);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
         }
 
         header img {
-            width: 110px;
-            height: 110px;
+            width: 95px;
+            height: 95px;
             border-radius: 50%;
             border: 3px solid var(--gold);
             object-fit: cover;
-            margin-bottom: 10px;
-            background-color: #fff;
         }
 
-        header h1 { margin: 5px 0; font-size: 22px; }
-        header p { color: var(--gold); font-size: 14px; font-weight: bold; margin: 5px 0; }
+        header h1 { margin: 10px 0 5px; font-size: 20px; }
+        header p { color: var(--gold); font-size: 13px; margin: 0; font-weight: bold; }
+
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+        }
 
         .container {
             max-width: 500px;
-            margin: 25px auto;
-            padding: 0 20px;
+            margin: 30px auto;
+            padding: 0 15px;
+            text-align: center;
         }
 
-        /* 👉 የእንኳን ደህና መጣችሁ ካርድ ስታይል 👈 */
         .welcome-card {
             background: var(--card-bg);
-            padding: 20px;
+            padding: 25px 20px;
             border-radius: 12px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--purple);
         }
 
-        .welcome-card h2 {
-            color: var(--purple);
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-size: 18px;
+        .welcome-card h2 { color: var(--purple); margin-top: 0; font-size: 18px; }
+        body.dark-mode .welcome-card h2 { color: var(--gold); }
+        .welcome-card p { font-size: 14px; line-height: 1.6; opacity: 0.85; }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
         }
 
-        .welcome-card p {
-            color: #555;
-            font-size: 14px;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .btn-card {
-            background: var(--card-bg);
+        .btn {
             display: block;
-            padding: 18px;
-            margin-bottom: 20px;
-            border-radius: 12px;
+            padding: 14px;
+            border-radius: 8px;
             text-decoration: none;
-            color: var(--purple);
             font-weight: bold;
-            font-size: 16px;
-            border-left: 6px solid var(--purple);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-            transition: 0.3s;
+            font-size: 15px;
+            transition: 0.2s;
         }
 
-        .btn-card:hover {
-            background: var(--purple);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .btn-upload {
-            border-left-color: #008751;
-        }
+        .btn-primary { background: var(--purple); color: white; }
+        .btn-secondary { background: var(--gold); color: var(--purple); }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
-    <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት </h1>
-    <p>ኪነ-ጥበብ እና ስነጥበብ ክፍል</p>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
+    <img src="logo.png?v=2" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
+    <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</h1>
+    <p>ኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</p>
 </header>
 
 <div class="container">
-    
-    <!-- 👉 የእንኳን ደህና መጣችሁ መልእክት 👈 -->
     <div class="welcome-card">
-        <h2>እንኳን ደህና መጡ! 🕊️</h2>
-        <p>በዚህ ገጽ ሰነዶች፣ ግጥሞች፣ ድራማዎች እና መነባነቦች በቀላሉ ማግኘት ወይም አዲስ ሰነድ መጫን ይችላሉ።</p>
+        <h2>እንኳን ደህና መጡ!</h2>
+        <p>እዚህ ገጽ ላይ የክፍሉን ድራማዎች፣ ግጥሞች፣ መነባነቦች እና የተለያዩ ስነ-ጽሁፎችን ማግኘት፣ ማነበብ እንዲሁም አዳዲስ ሰነዶችን መስቀል ይችላሉ።</p>
+        
+        <div class="btn-group">
+            <a href="library.html" class="btn btn-primary">ወደ ይተጫኑ ሰነዶች ግባ</a>
+            <a href="upload.html" class="btn btn-secondary">➕ አዲስ ሰነድ ስቀል</a>
+        </div>
     </div>
-
-    <!-- የገጽ ማያያዣ ቁልፎች -->
-    <a href="library.html" class="btn-card">🔎 መፈለጊያ (Library)</a>
-    <a href="upload.html" class="btn-card btn-upload">➕ አዲስ ሰነድ መጫኛ (Upload)</a>
 </div>
+
+<script>
+    const themeBtn = document.getElementById('themeBtn');
+
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeBtn) themeBtn.innerText = '☀️ Light';
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        let isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        if (themeBtn) themeBtn.innerText = isDark ? '☀️ Light' : '🌙 Dark';
+    }
+</script>
 
 </body>
 </html>
