@@ -147,7 +147,7 @@
 
 <div class="container">
     <div class="form-card">
-        <form id="uploadForm">
+        <form id="uploadForm" onsubmit="uploadFile(event)">
             <div class="form-group">
                 <label for="docTitle">የሰነዱ ርዕስ</label>
                 <input type="text" id="docTitle" placeholder="ለምሳሌ፦ የትንሣኤ ድራማ" required>
@@ -169,7 +169,7 @@
             </div>
 
             <div class="form-group">
-                <label for="pdfFileInput">PDF ወይም Word ፋይል ይምረጡ</label>
+                <label for="pdfFileInput">ፋይል ይምረጡ</label>
                 <input type="file" id="pdfFileInput" accept="application/pdf, .pdf, .doc, .docx, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
             </div>
 
@@ -194,12 +194,12 @@
         if (themeBtn) themeBtn.innerText = isDark ? '☀️ Light' : '🌙 Dark';
     }
 
-        const cloudName = "r1czakru";
+    const cloudName = "r1czakru";
     const uploadPreset = "ml_default";
 
-    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
+    async function uploadFile(event) {
+        event.preventDefault();
+
         let title = document.getElementById('docTitle').value;
         let category = document.getElementById('docCategory').value;
         let author = document.getElementById('docAuthor').value;
@@ -207,7 +207,7 @@
         let statusMsg = document.getElementById('statusMsg');
         let submitBtn = document.getElementById('submitBtn');
 
-        if (fileInput.files.length === 0) {
+        if (!fileInput.files || fileInput.files.length === 0) {
             alert("እባክዎን ፋይል ይምረጡ!");
             return;
         }
@@ -218,10 +218,9 @@
         formData.append("upload_preset", uploadPreset);
 
         statusMsg.style.color = "orange";
-        statusMsg.innerText = "ሰነዱ እየተጫነ ነው... እባክዎን ትንሽ ይጠብቁ...";
+        statusMsg.innerText = "⏳ ሰነዱ እየተጫነ ነው... እባክዎን ትንሽ ይጠብቁ...";
         submitBtn.disabled = true;
 
-        // የፋይሉን ዓይነት መለየት (auto / raw)
         let endpoint = "auto";
         let fileName = file.name.toLowerCase();
         if (fileName.endsWith('.pdf') || fileName.endsWith('.doc') || fileName.endsWith('.docx')) {
@@ -260,13 +259,18 @@
 
             } else {
                 console.error("Cloudinary Error:", data);
-                throw new Error(data.error ? data.error.message : "የፋይል መጫን ስህተት አጋጥሟል");
+                statusMsg.style.color = "red";
+                statusMsg.innerText = "❌ ስህተት፦ " + (data.error ? data.error.message : "ፋይሉን መጫን አልተቻለም");
             }
         } catch (error) {
             statusMsg.style.color = "red";
-            statusMsg.innerText = "❌ ሰነዱን መጫን አልተቻለም፦ " + error.message;
+            statusMsg.innerText = "❌ የኔትወርክ ስህተት አጋጥሟል። እባክዎን የኢንተርኔት ግንኙነትዎን ያረጋግጡ።";
             console.error(error);
         } finally {
             submitBtn.disabled = false;
         }
-    });
+    }
+</script>
+
+</body>
+</html>
