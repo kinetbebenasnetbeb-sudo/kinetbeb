@@ -194,7 +194,7 @@
         if (themeBtn) themeBtn.innerText = isDark ? '☀️ Light' : '🌙 Dark';
     }
 
-    const cloudName = "r1czakru";
+        const cloudName = "r1czakru";
     const uploadPreset = "ml_default";
 
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
@@ -221,8 +221,15 @@
         statusMsg.innerText = "ሰነዱ እየተጫነ ነው... እባክዎን ትንሽ ይጠብቁ...";
         submitBtn.disabled = true;
 
+        // የፋይሉን ዓይነት መለየት (auto / raw)
+        let endpoint = "auto";
+        let fileName = file.name.toLowerCase();
+        if (fileName.endsWith('.pdf') || fileName.endsWith('.doc') || fileName.endsWith('.docx')) {
+            endpoint = "raw";
+        }
+
         try {
-            let response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/raw/upload`, {
+            let response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${endpoint}/upload`, {
                 method: "POST",
                 body: formData
             });
@@ -252,17 +259,14 @@
                 }, 1500);
 
             } else {
-                throw new Error("የፋይል መጫን ስህተት አጋጥሟል");
+                console.error("Cloudinary Error:", data);
+                throw new Error(data.error ? data.error.message : "የፋይል መጫን ስህተት አጋጥሟል");
             }
         } catch (error) {
             statusMsg.style.color = "red";
-            statusMsg.innerText = "❌ ሰነዱን መጫን አልተቻለም። እባክዎን የኢንተርኔት ግንኙነትዎን ያረጋግጡ።";
+            statusMsg.innerText = "❌ ሰነዱን መጫን አልተቻለም፦ " + error.message;
             console.error(error);
         } finally {
             submitBtn.disabled = false;
         }
     });
-</script>
-
-</body>
-</html>
