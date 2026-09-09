@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
+    <title>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="manifest" href="manifest.json">
 
@@ -14,7 +14,7 @@
             --bg: #F4F0F8;
             --card-bg: #FFFFFF;
             --text-color: #333333;
-            --border-color: #E0E0E0;
+            --border-color: #CCCCCC;
         }
 
         body.dark-mode {
@@ -63,7 +63,7 @@
             padding: 8px 12px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .nav-bar {
@@ -107,7 +107,7 @@
         }
 
         .stat-card h4 { margin: 0; font-size: 11px; opacity: 0.8; }
-        .stat-card p { margin: 3px 0 0; font-size: 16px; font-weight: bold; color: var(--purple); }
+        .stat-card p { margin: 3px 0 0 0; font-size: 16px; font-weight: bold; color: var(--purple); }
         body.dark-mode .stat-card p { color: var(--gold); }
 
         .search-box {
@@ -124,7 +124,7 @@
         }
 
         .category-tabs { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
-        .tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: bold; color: var(--text-color); white-space: nowrap; }
+        .tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; color: var(--text-color); }
         .tab-btn.active { background: var(--purple); color: white; border-color: var(--purple); }
 
         .doc-card {
@@ -142,18 +142,18 @@
         }
 
         .doc-info h3 { margin: 0 0 4px; color: var(--purple); font-size: 15px; }
-        body.dark-mode .doc-info h3 { color: var(--gold); }
+        body.dark-mode .doc-info h3 { color: #FFF; }
         .doc-info p { margin: 0; font-size: 12px; opacity: 0.8; }
-        .badge { background: rgba(90, 29, 110, 0.1); color: var(--purple); padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 5px; }
+        .badge { background: rgba(90, 29, 110, 0.1); color: var(--purple); padding: 2px 6px; border-radius: 4px; font-size: 11px; }
         body.dark-mode .badge { background: rgba(255, 215, 0, 0.2); color: var(--gold); }
 
         .actions { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
-        .btn-action { text-decoration: none; padding: 6px 10px; border-radius: 5px; font-weight: bold; font-size: 11px; border: none; cursor: pointer; }
+        .btn-action { text-decoration: none; padding: 6px 10px; border-radius: 5px; font-weight: bold; font-size: 11px; cursor: pointer; border: none; }
         .btn-view { background: var(--purple); color: white; }
-        .btn-download { background: #008751; color: white; }
+        .btn-download { background: #28a745; color: white; }
         .btn-share { background: #0088cc; color: white; }
         .btn-fav { background: transparent; border: 1px solid var(--border-color); font-size: 14px; }
-        .btn-delete { background: #D9534F; color: white; }
+        .btn-delete { background: #dc3545; color: white; }
 
         /* PDF Modal Viewer */
         .modal {
@@ -163,6 +163,7 @@
             background: rgba(0,0,0,0.85);
             z-index: 1000;
         }
+
         .modal-content {
             position: relative;
             width: 90%; max-width: 800px; height: 85%;
@@ -170,60 +171,64 @@
             background: white; border-radius: 8px;
             overflow: hidden;
         }
+
         .close-modal {
             position: absolute; top: 8px; right: 12px;
-            background: #D9534F; color: white;
+            background: #dc3545; color: white;
             border: none; padding: 6px 12px; border-radius: 4px;
             font-weight: bold; cursor: pointer; z-index: 1001;
         }
+
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-<header>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
-    <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
-    <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</h1>
-    <p>ኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</p>
-</header>
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark</button>
+        <img src="logo.png" alt="Logo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3237/3237472.png'">
+        <h1>መሠረተ ሃይማኖት ሰንበት ትምህርት ቤት</h1>
+        <p>ኪነ-ጥበብ እና ስነ-ጥበብ ክፍል</p>
+    </header>
 
-<div class="nav-bar">
-    <a href="index.html" class="btn-nav">⬅ መግቢያ ገጽ</a>
-    <a href="upload.html" class="btn-nav">➕ ሰነድ ስቀል</a>
-</div>
-
-<div class="container">
-
-    <!-- Statistics Counter -->
-    <div class="stats-container">
-        <div class="stat-card"><h4>ጠቅላላ</h4><p id="statTotal">0</p></div>
-        <div class="stat-card"><h4>ግጥም</h4><p id="statPoem">0</p></div>
-        <div class="stat-card"><h4>ድራማ</h4><p id="statDrama">0</p></div>
-        <div class="stat-card"><h4>መነባነብ</h4><p id="statMonologue">0</p></div>
+    <div class="nav-bar">
+        <a href="index.html" class="btn-nav">⬅ መግቢያ ገጽ</a>
+        <a href="upload.html" class="btn-nav">➕ ሰነድ ስቀል</a>
     </div>
 
-    <input type="text" id="searchInput" class="search-box" onkeyup="filterDocs()" placeholder="🔍 የሰነዱን ርዕስ ወይም ጸሐፊ ይፈልጉ...">
+    <div class="container">
 
-    <div class="category-tabs">
-        <button class="tab-btn active" onclick="setCategory('ሁሉም', this)">ሁሉም</button>
-        <button class="tab-btn" onclick="setCategory('❤️ የተወደዱ', this)">❤️ የተወደዱ</button>
-        <button class="tab-btn" onclick="setCategory('ግጥም', this)">ግጥም</button>
-        <button class="tab-btn" onclick="setCategory('ድራማ', this)">ድራማ</button>
-        <button class="tab-btn" onclick="setCategory('መነባነብ', this)">መነባነብ</button>
-        <button class="tab-btn" onclick="setCategory('ስነ ፅሁፍ', this)">ስነ ፅሁፍ</button>
+        <!-- Statistics Counter -->
+        <div class="stats-container">
+            <div class="stat-card"><h4>ጠቅላላ</h4><p id="statTotal">0</p></div>
+            <div class="stat-card"><h4>ግጥም</h4><p id="statPoem">0</p></div>
+            <div class="stat-card"><h4>ድራማ</h4><p id="statDrama">0</p></div>
+            <div class="stat-card"><h4>መነባነብ</h4><p id="statMonologue">0</p></div>
+            <div class="stat-card"><h4>ስነ ፅሁፍ</h4><p id="statLit">0</p></div>
+        </div>
+
+        <input type="text" id="searchInput" class="search-box" onkeyup="filterDocs()" placeholder="🔍 የሰነዱን ርዕስ ወይም ጸሐፊ ይፈልጉ...">
+
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="setCategory('ሁሉም', this)">ሁሉም</button>
+            <button class="tab-btn" onclick="setCategory('❤️ የተወደዱ', this)">❤️ የተወደዱ</button>
+            <button class="tab-btn" onclick="setCategory('ግጥም', this)">ግጥም</button>
+            <button class="tab-btn" onclick="setCategory('ድራማ', this)">ድራማ</button>
+            <button class="tab-btn" onclick="setCategory('መነባነብ', this)">መነባነብ</button>
+            <button class="tab-btn" onclick="setCategory('ስነ ፅሁፍ', this)">ስነ ፅሁፍ</button>
+        </div>
+
+        <div id="documentContainer"></div>
+
     </div>
 
-    <div id="documentContainer"></div>
-</div>
-
-<!-- PDF Viewer Modal -->
-<div id="pdfModal" class="modal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closePdf()">✕ ዝጋ</button>
-        <iframe id="pdfFrame" src=""></iframe>
+    <!-- PDF Viewer Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePdf()">❌ ዝጋ</button>
+            <iframe id="pdfFrame" src=""></iframe>
+        </div>
     </div>
-</div>
 
 <script>
     let documents = JSON.parse(localStorage.getItem('mesereteDocs')) || [];
@@ -234,6 +239,7 @@
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
+
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
         let isDark = document.body.classList.contains('dark-mode');
@@ -256,6 +262,7 @@
         document.getElementById('pdfFrame').src = url;
         document.getElementById('pdfModal').style.display = 'block';
     }
+
     function closePdf() {
         document.getElementById('pdfModal').style.display = 'none';
         document.getElementById('pdfFrame').src = '';
@@ -263,12 +270,12 @@
 
     // Share to Telegram
     function shareDoc(title, link) {
-        let text = encodeURIComponent(`📄 *${title}*\nከመሠረተ ሃይማኖት ሰንበት ትምህርት ቤት ኪነ-ጥበብ ክፍል ያንብቡ፦\n${link}`);
+        let text = encodeURIComponent(`📄 "${title}"\nከመሠረተ ሃይማኖት ሰንበት ትምህርት ቤት ኪነ-ጥበብ ክፍል የተላከ፦\n${link}`);
         window.open(`https://t.me/share/url?url=${link}&text=${text}`, '_blank');
     }
 
     function deleteDoc(id) {
-        if(confirm("ይህንን ሰነድ መሰረዝ ይፈልጋሉ?")) {
+        if(confirm("ይህንን ሰነድ ማጥፋት እርግጠኛ ነዎት?")) {
             documents = documents.filter(doc => doc.id !== id);
             localStorage.setItem('mesereteDocs', JSON.stringify(documents));
             renderDocs();
@@ -280,6 +287,7 @@
         document.getElementById('statPoem').innerText = documents.filter(d => d.category === 'ግጥም').length;
         document.getElementById('statDrama').innerText = documents.filter(d => d.category === 'ድራማ').length;
         document.getElementById('statMonologue').innerText = documents.filter(d => d.category === 'መነባነብ').length;
+        document.getElementById('statLit').innerText = documents.filter(d => d.category === 'ስነ ፅሁፍ').length;
     }
 
     function renderDocs() {
@@ -296,7 +304,7 @@
         });
 
         if (filtered.length === 0) {
-            container.innerHTML = '<p style="text-align:center; opacity:0.6; padding:20px;">ምንም የተጫነ ሰነድ አልተገኘም።</p>';
+            container.innerHTML = `<p style="text-align: center; opacity: 0.6; padding: 20px;">ምንም የተገኘ ሰነድ የለም</p>`;
             return;
         }
 
@@ -309,12 +317,12 @@
                 <div class="doc-card">
                     <div class="doc-info">
                         <h3>${doc.title} <span class="badge">${doc.category}</span></h3>
-                        <p>ጸሐፊ፦ ${doc.author}</p>
+                        <p>ደራሲ፦ ${doc.author}</p>
                     </div>
                     <div class="actions">
                         <button class="btn-action btn-fav" onclick="toggleFav(${doc.id})">${isFav ? '❤️' : '🤍'}</button>
-                        <button class="btn-action btn-view" onclick="viewPdf('${doc.link}')">👁️ ከፍተህ እይ</button>
-                        <a href="${doc.link}" download="${doc.title}.pdf" target="_blank" class="btn-action btn-download">📥</a>
+                        <button class="btn-action btn-view" onclick="viewPdf('${doc.link}')">👁️ ክፍት አድርግ</button>
+                        <a href="${doc.link}" download="${doc.title}.pdf" target="_blank" class="btn-action btn-download">📥 አውርድ</a>
                         <button class="btn-action btn-share" onclick="shareDoc('${doc.title}', '${doc.link}')">✈️ Share</button>
                         ${deleteBtn}
                     </div>
